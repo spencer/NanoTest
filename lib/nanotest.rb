@@ -140,3 +140,5 @@ module NanoTest
     
   end
 end
+
+at_exit{NanoTest::Runner.run_tests}
