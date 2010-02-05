@@ -15,6 +15,14 @@ module NanoTest
     def assert_not_equal(expected, actual, message=nil)
       assert(!(expected == actual), message)
     end
+
+    def assert_match(expected, actual, message=nil)
+      assert(expected =~ actual, message)
+    end
+
+    def assert_true(asserted, message=nil)
+      assert((asserted), message)
+    end
   end
 
 
@@ -40,7 +48,10 @@ module NanoTest
     def _run
       begin
         _run_or_stop { setup }
-
+        puts "\n\n#{'=' * (self.class.to_s.length.to_i)}\n"
+        puts self.class
+        puts "#{'=' * (self.class.to_s.length.to_i)}\n"
+        puts _test_methods
         _test_methods.each do |tm|
           _run_or_stop { send(tm) }
         end

@@ -1,0 +1,14 @@
+#.gitignore
+.htaccess
+.DS_Store
+log/*.log
+tmp/**/*
+public/system/**/*
+config/database.yml
+db/*.sqlite3
+.sass-cache/
+*/**/*.swp
+*.swp
+:html5
+tmp
+Wiki Notes
