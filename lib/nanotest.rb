@@ -9,19 +9,20 @@ module NanoTest
     end
     
     def assert_equal(expected, actual, message=nil)
-      assert((expected == actual), message)
+      assert((expected == actual), message + "\nExpected: #{expected}\nActual: #{actual}")
     end
     
     def assert_not_equal(expected, actual, message=nil)
-      assert(!(expected == actual), message)
+      assert(!(expected == actual), message + "\nExpected: #{expected}\nActual: #{actual}")
     end
 
     def assert_match(expected, actual, message=nil)
-      assert(expected =~ actual, message)
+      message ||= ""
+      assert(expected =~ actual, message + "\nExpected: #{expected}\nActual: #{actual}")
     end
 
     def assert_true(asserted, message=nil)
-      assert((asserted), message)
+      assert((asserted), message + "\nAsserted: #{asserted}")
     end
   end
 
