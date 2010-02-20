@@ -3,25 +3,25 @@ module NanoTest
 
 
   module Assertions
-    def assert(asserted, message=nil)
+    def assert(asserted, message="")
       Runner.assertions += 1
       asserted ? _pass : _fail(message)
     end
     
-    def assert_equal(expected, actual, message=nil)
+    def assert_equal(expected, actual, message="")
       assert((expected == actual), message + "\nExpected: #{expected}\nActual: #{actual}")
     end
     
-    def assert_not_equal(expected, actual, message=nil)
+    def assert_not_equal(expected, actual, message="")
       assert(!(expected == actual), message + "\nExpected: #{expected}\nActual: #{actual}")
     end
 
-    def assert_match(expected, actual, message=nil)
+    def assert_match(expected, actual, message="")
       message ||= ""
       assert(expected =~ actual, message + "\nExpected: #{expected}\nActual: #{actual}")
     end
 
-    def assert_true(asserted, message=nil)
+    def assert_true(asserted, message="")
       assert((asserted), message + "\nAsserted: #{asserted}")
     end
   end
