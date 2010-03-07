@@ -24,6 +24,10 @@ module NanoTest
     def assert_true(asserted, message="")
       assert((asserted), message + "\nAsserted: #{asserted}")
     end
+    
+    def assert_false(asserted, message="")
+      assert(!(asserted), message + "\nAsserted: #{asserted}")
+    end
   end
 
 
