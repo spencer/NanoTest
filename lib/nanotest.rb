@@ -1,7 +1,11 @@
+class String
+  def red; colorize(self, "\e[1m\e[31m"); end
+  def green; colorize(self, "\e[1m\e[32m"); end
+  def colorize(text, color_code)  "#{color_code}#{text}\e[0m" end
+end
+
 module NanoTest
   class TestFailure < StandardError; end
-
-
   module Assertions
     def assert(asserted, message="")
       Runner.assertions += 1
@@ -29,8 +33,8 @@ module NanoTest
       assert(!(asserted), message + "\nAsserted: #{asserted}")
     end
   end
-
-
+  
+ 
   class TestCase
     include Assertions
     
@@ -41,12 +45,12 @@ module NanoTest
     end
 
     def _pass
-      print '.'
+      print '.'.green
       Runner.passes += 1
     end 
 
     def _fail(message)
-      print 'F'
+      print 'F'.red
       raise TestFailure.new(message || 'FAIL')
     end
 
@@ -90,7 +94,7 @@ module NanoTest
     end
   end
 
-  class Runner
+  class Runner    
     def self.testsuites
       @testsuites ||= []
     end
@@ -133,16 +137,17 @@ module NanoTest
 
     def self.report_results
       puts
-      puts "#{assertions} assertions, #{failures.select {|f| f.is_a?(TestFailure) }.length} failures, #{failures.reject {|f| f.is_a?(TestFailure) }.length} errors"
+      puts "#{assertions} assertions".green
+      puts "#{failures.select {|f| f.is_a?(TestFailure) }.length} failures, #{failures.reject {|f| f.is_a?(TestFailure) }.length} errors".red
       puts
       @failures.each_with_index{| failure, index| report_failure(failure, index)} 
     end
 
     def self.report_failure(failure, number = 0)
       require 'pp'
-      puts "#{number + 1}) #{failure.message} (#{failure.class.name})"
+      text = "#{number + 1} #{failure.message} #{(failure.class.name)}"
+      puts text.to_s.red
     end
-    
   end
 end
 
